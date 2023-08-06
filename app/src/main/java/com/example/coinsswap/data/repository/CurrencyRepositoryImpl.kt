@@ -16,7 +16,8 @@ import java.io.IOException
 class CurrencyRepositoryImpl(
     private val api: CurrencyApi,
     private val dao: CurrencyRateDao
-) : CurrencyRepository {
+): CurrencyRepository {
+
     override fun getCurrencyRatesList(): Flow<Resource<List<CurrencyRate>>> = flow {
         val localCurrencyRates = getLocalCurrencyRates()
         emit(Resource.Success(localCurrencyRates))
@@ -25,21 +26,22 @@ class CurrencyRepositoryImpl(
             val newRates = getRemoteCurrencyRates()
             updateLocalCurrencyRates(newRates)
             emit(Resource.Success(newRates))
-        } catch (e:IOException){
+        } catch (e: IOException) {
             emit(
                 Resource.Error(
-                    message = "Couldn't research server, check your internet connection",
+                    message = "Couldn't reach server, check your internet connection",
                     data = localCurrencyRates
                 )
             )
-        }catch (e:Exception){
+        } catch (e: Exception) {
             emit(
                 Resource.Error(
-                    message = "Oops, something went wrong!",
+                    message = "Oops, something went wrong! ${e.message}",
                     data = localCurrencyRates
                 )
             )
         }
+
     }
 
     private suspend fun getLocalCurrencyRates(): List<CurrencyRate> {

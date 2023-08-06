@@ -6,7 +6,7 @@ import com.example.coinsswap.data.local.entity.CurrencyRateEntity
 
 @Database(
     entities = [CurrencyRateEntity::class],
-    version = 1
+    version = 2
 )
 abstract class CurrencyRateDatabase : RoomDatabase() {
 

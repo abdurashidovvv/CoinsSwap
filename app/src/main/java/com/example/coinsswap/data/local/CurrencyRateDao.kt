@@ -9,8 +9,8 @@ import com.example.coinsswap.data.local.entity.CurrencyRateEntity
 interface CurrencyRateDao {
 
     @Upsert
-    suspend fun upsertAll(currencyRate: List<CurrencyRateEntity>)
+    suspend fun upsertAll(currencyRates: List<CurrencyRateEntity>)
 
-    @Query("select * from currencyrateentity")
-    suspend fun getAllCurrencyRates():List<CurrencyRateEntity>
+    @Query("SELECT * FROM currencyrateentity")
+    suspend fun getAllCurrencyRates(): List<CurrencyRateEntity>
 }

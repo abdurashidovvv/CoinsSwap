@@ -2,13 +2,18 @@ package com.example.coinsswap.data.remote
 
 import com.example.coinsswap.data.remote.dto.CurrencyDto
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface CurrencyApi {
 
-    @GET("json/")
-    suspend fun getLatestRates(): CurrencyDto
+    @GET("v1/latest")
+    suspend fun getLatestRates(
+        @Query("apikey") apiKey: String = API_KEY
+    ): CurrencyDto
 
     companion object {
-        val BASE_URL = "http://cbu.uz/uzc/arkhiv-kursov-valyut/"
+        const val API_KEY = "p72HnN2uDUUHEbh2BEuFgKQRd9pkqutaETfvLoG3"
+        const val BASE_URL = "https://api.freecurrencyapi.com/"
     }
+
 }

@@ -3,7 +3,7 @@ package com.example.coinsswap.presentation.main_screen
 import com.example.coinsswap.domain.model.CurrencyRate
 
 data class MainScreenState(
-    val fromCurrencyCode: String = "UZ",
+    val fromCurrencyCode: String = "EUR",
     val toCurrencyCode: String = "USD",
     val fromCurrencyValue: String = "0.00",
     val toCurrencyValue: String = "0.00",
